@@ -1,19 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import Hello from './Hello';
+import Card from './Card'
 import reportWebVitals from './reportWebVitals';
 import 'tachyons';
+import { robots } from './robots';
 
-const palyer = "Anmar";
+const CardSize = 200;
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-<Hello name = {"Mr." + palyer}/>  
-<App />
-    
+    <div className='tc'>
+      <h1 className='fw4'>Welcome to the robot town</h1>
+      {robots.map(number => <Card cardsize={CardSize} id={number.id} name={number.name} username={number.username} email={number.email} />)}
+
+
+    </div>
+
+
+
   </React.StrictMode>
 );
 
