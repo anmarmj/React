@@ -1,21 +1,20 @@
 import Card from './Card';
 
 
-const CardList = ({ robots, title }) => {
-    const CardSize = 200;
+const CardList = ({ robots, cardsize }) => {
 
     return (
         <div className='tc'>
-            <h1 className='fw4'>{title}</h1>
+          
             {
-                robots.map(number =>
+                robots.map(item =>
                     <Card
-                        key={number.id}
-                        cardsize={CardSize}
-                        id={number.id}
-                        name={number.name}
-                        username={number.username}
-                        email={number.email} />
+                        key={item.id}
+                        cardsize={cardsize}
+                        id={item.id}
+                        name={item.name}
+                        username={item.username}
+                        email={item.email} />
                 )
             }
         </div>
