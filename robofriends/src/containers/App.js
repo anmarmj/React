@@ -1,9 +1,9 @@
-import CardList from './CardList';
+import CardList from '../components/CardList';
 // import { robots } from './robots';
-import SearchBox from './SearchBox'
+import SearchBox from '../components/SearchBox'
 import React, { Component } from 'react';
 import './App.css'
-import Scroll from './Scroll';
+import Scroll from '../components/Scroll';
 
 
 
@@ -37,25 +37,27 @@ class App extends Component {
     }
     render() {
 
-        const filterdRobots = this.state.robots.filter(
-            robotsArry => {
-                return robotsArry.name.toLowerCase().includes
-                    (this.state.searchfield.toLowerCase())
+        const { robots, searchfield, cardsize } = this.state
+
+        const filterdRobots = robots.filter(
+            robot => {
+                return robot.name.toLowerCase().includes
+                    (searchfield.toLowerCase())
             }
 
         )
 
-        if (this.state.robots.length === 0) {
+        return (!robots.length) ?
 
-            return (
+            (
                 <div className='dtc v-mid tc white ph3 ph4-l'>
                     <h1 >Loading awesome robots</h1>
                 </div>
             )
 
-        }
-        else {
-            return (
+
+            :
+            (
                 <div className='tc'>
                     <h1 className='fw8'>Robo Friends</h1>
                     <SearchBox
@@ -64,14 +66,14 @@ class App extends Component {
                     <Scroll>
                         <CardList
                             robots={filterdRobots}
-                            cardsize={this.state.cardsize} />
+                            cardsize={cardsize} />
                     </Scroll>
 
                 </div>
 
 
             );
-        }
+
     }
 
 }
