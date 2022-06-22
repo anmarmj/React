@@ -1,5 +1,5 @@
 import CardList from './CardList';
-import { robots } from './robots';
+// import { robots } from './robots';
 import SearchBox from './SearchBox'
 import React, { Component } from 'react';
 import './App.css'
@@ -12,7 +12,7 @@ class App extends Component {
         super();
         this.state =
         {
-            robots: robots,
+            robots: [],
             searchfield: '',
             cardsize: 200
         }
@@ -21,6 +21,17 @@ class App extends Component {
     onSearchChange = (event) => {
 
         this.setState({ searchfield: event.target.value })
+
+    }
+    componentDidMount() {
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => {
+                return response.json();
+            })
+            .then(users => {
+                this.setState({ robots: users })
+            })
+
 
     }
     render() {
@@ -33,19 +44,30 @@ class App extends Component {
 
         )
 
-        return (
-            <div className='tc'>
-                <h1 className='fw8'>Robo Friends</h1>
-                <SearchBox
+        if (this.state.robots.length === 0) {
 
-                    searchChange={this.onSearchChange} />
-                <CardList
-                    robots={filterdRobots}
-                    cardsize={this.state.cardsize} />
-            </div>
+            return (
+                <div className='dtc v-mid tc white ph3 ph4-l'>
+                    <h1 >Loading awesome robots</h1>
+                </div>
+            )
+
+        }
+        else {
+            return (
+                <div className='tc'>
+                    <h1 className='fw8'>Robo Friends</h1>
+                    <SearchBox
+
+                        searchChange={this.onSearchChange} />
+                    <CardList
+                        robots={filterdRobots}
+                        cardsize={this.state.cardsize} />
+                </div>
 
 
-        );
+            );
+        }
     }
 
 }
