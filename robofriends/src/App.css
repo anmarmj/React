@@ -1,0 +1,11 @@
+@import url('http://fonts.cdnfonts.com/css/sega-logo-font');
+
+h1
+{
+    font-family: 'SEGA LOGO FONT', sans-serif;
+    font-size: 5.5em;
+    color:darkcyan;
+    -webkit-text-stroke-width: .5px;
+  -webkit-text-stroke-color: white;
+                                                
+}
