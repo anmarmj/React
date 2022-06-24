@@ -1,7 +1,7 @@
 import Card from './Card';
 
 
-const CardList = ({ robots, cardsize }) => {
+const CardList = ({ robots, cardsize ,setName}) => {
 
     return (
         <div className='tc'>
@@ -14,7 +14,9 @@ const CardList = ({ robots, cardsize }) => {
                         id={item.id}
                         name={item.name}
                         username={item.username}
-                        email={item.email} />
+                        email={item.email} 
+                        setName = {setName}
+                        />
                 )
             }
         </div>
